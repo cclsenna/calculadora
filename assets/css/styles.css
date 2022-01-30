@@ -1,0 +1,28 @@
+.container{
+    width: 480px;
+    border:solid 2px black;
+    height:520px;
+    background-color: grey;
+    margin: 5% auto;
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(6,1fr);
+    background-color:hotpink;
+    padding: 10px;
+    row-gap: 5px;
+    column-gap: 5px;
+    border-radius :12px;
+
+    
+}
+
+
+.container__item{
+    text-align: center;
+    background-color: gray;
+}
+
+.container__item--disp{
+    grid-column: span 4;
+}
+
