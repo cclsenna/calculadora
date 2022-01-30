@@ -1,6 +1,12 @@
+body{
+    font-family: 'IBM Plex Sans Thai Looped', sans-serif;
+    background-color:rgb(5, 5, 37);
+
+}
+
 .container{
     width: 480px;
-    border:solid 3px black;
+    border:solid 3px whitesmoke;
     height:520px;
     background-color: grey;
     margin: 80px auto;
@@ -13,23 +19,29 @@
     column-gap: 6px;
     border-radius :12px;
     font-size: 36px;
+    font-weight: bolder;
+    
       
 }
 
 
 .container__item{
     text-align: center;
-    background-color: whitesmoke;
     border-radius: 8px;
     border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container__item--num:hover{
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 .container__item--num{
     cursor:pointer;
+    background-color: whitesmoke;
+
 
 
 }
@@ -37,12 +49,20 @@
 .container__item--disp{
     grid-column: span 4;
     padding: 10px;
+    background-color: whitesmoke;
+    
+
 }
 
 .container__item__value{
     height: 100%;
+    width: 100%;
     background-color:gray;
     border-radius:8px;
     border:2px solid black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
