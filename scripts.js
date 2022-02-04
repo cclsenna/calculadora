@@ -10,36 +10,57 @@ $('.container__item--num').on('click',controller);
 //declaração das funções
 const operacoes= {
     sum(a,b){
+        console.log('entrou na soma')
         return a+b;
     },
     
     subtract(a,b){   
+        console.log('entrou na subtracao')
+
         return a-b;
     
     },
     
     multiply(a,b){
+        console.log('entrou na multiplicacao')
+
         return a*b;
     
     },
     
     divide(a,b){
+        console.log('entrou na divisao')
+
         return a/b;
     
     },
     clear(){
-        //deve limpar apenas o numero atual da tela
+        fila=[];
         $('#value').text('0');
         return;
     },
     allClear(){
-        // console.log('limpando o valor da tela e fila')
-
         fila=[];
         $('#value').text('0');
 
 
 
+    },
+    equals(a,b,funcao){
+        console.log(`entrou no equals com os valores a ${a}, b ${b}, c ${funcao}`);
+
+        this.realizar=operacoes[funcao];
+        this.resultado=this.realizar(a,b);
+        exibe(resultado);
+
+        for(let i =0;i<3;i++){
+            console.log('retirando os valores já utilizados');
+            fila.shift();
+        }
+        
+
+        return;
+        //define qual a operçaão que será realizada
     }
     
 }
@@ -55,14 +76,26 @@ function exibe(numExibicao){
 //essa função irá manipular o array da fila
 function controller(){
     const id=this.id;
-    let num1=0;
-    let num2=0;
+    let num1='';
+    let num2='';
     let operador='';
 
 
+    //verifica se já podemos realizar o calculo
+    if(fila[0]&&fila[1]&&fila[2]&&id!='equals'){
+        console.log('ja temos os valores necessarios');
+        console.log(`o id é ${id}`);
+        const realizaOperacao=operacoes[id];
+        const  result=realizaOperacao(parseInt(fila[0]),parseInt(fila[2]));
+        console.log(result);
+        
+        return;
 
-    if(num1&&num2&&operador){
-        console.log
+    }
+    else if(fila[0]&&fila[1]&&fila[2]&&id==='equals'){
+        const realizaOperacao=operacoes[id];
+        const  result=realizaOperacao(parseInt(fila[0]),parseInt(fila[2]),fila[1]);
+        return;
 
     }
 
@@ -70,7 +103,7 @@ function controller(){
 
     else{
 
-    //verifica se o botão pressioando é de alguma oepraçõ que precisa ser feita instantaneament
+    //verifica se o botão pressioando é de alguma operação que precisa ser feita instantaneamente
     if(operacaoEspecial.indexOf(id)>-1&&fila){
         console.log('operacao especial ativada');
         let op=operacoes[id];
@@ -79,8 +112,8 @@ function controller(){
     }
 
 
-    //verifica se  o botao pressionado é de alguma op matematica
-    else if(operacaoPermitida.indexOf(id)>-1&&!fila){
+    //verifica se  o botao pressionado é de alguma operçaão matematica
+    else if(operacaoPermitida.indexOf(id)>-1&&fila){
         console.log('operacao permitida ativada');
         if(operacaoPermitida.indexOf(fila[fila.length-1])>-1){
             console.log('o operador já existe,substituindo pelo novo');
@@ -88,7 +121,7 @@ function controller(){
             console.log(fila);
         }
         else{            
-            addLista(this.id);
+            addLista(this);
 
         }
         operador=this.id;
@@ -105,44 +138,42 @@ function controller(){
     else return;
 }
  
-/*
-    if(operacaoPermitida.indexOf(id)>-1){
-        console.log('operacao permitida');
-        return;
-    }
-
-    */
-    
-    //console.log(`Pegou o valor ${e.target.innerText}`);
-    //console.log('o id desse cara é : '+id);
-
 }
 
 
 function addLista(value){
     //inserir regra de negocio aqui para tratar o cenario em que o usuario aperta apenas botões de operações.nesse caso devo considerar só a ultima.
-    //um vetor 
+    //um vetor
 
-
-    if(parseInt(fila[fila.length-1])){
-        fila[fila.length-1]+=value; 
-        exibe(fila[fila.length-1]);
+    //verifica se id está presente
+    if(value.id){
+        console.log('entrou aqui');
+        fila.push(value.id);
         console.log(fila);
         return;
     }
 
 
+    else if(parseInt(fila[fila.length-1])){
+        fila[fila.length-1]+=value; 
+        exibe(fila[fila.length-1]);
+        console.log(fila);
+        return;
+    }
+    
     fila.push(value);
     exibe(value);
     console.log(fila);
 }
 
 
-//irei utilizar essa func para exibir o claculo anterior na tela
+//função identifica qual foi numero ou operação escolhida e o coloca em um objeto
 function lastOperation(){
 
 
+
 }
+
 
 //criar uma classe  para os obvjetos na quqla ele terão o valor od  número e 
 
