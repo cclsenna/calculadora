@@ -42,8 +42,10 @@ body{
     cursor:pointer;
     background-color: whitesmoke;
 
+}
 
-
+.container__item--num:active{
+    transform: translate(2px,2px);
 }
 
 .container__item--disp{
