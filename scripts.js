@@ -10,30 +10,41 @@ $('.container__item--num').on('click',controller);
 //declaração das funções
 const operacoes= {
     sum(a,b){
-        console.log('entrou na soma')
-        return a+b;
+
+        console.log('entrou na soma');
+        let result=a+b;
+        exibe(result);
+        return;
     },
     
     subtract(a,b){   
         console.log('entrou na subtracao')
+        let result=a-b;
+        exibe(result);
 
-        return a-b;
+
+        return;
     
     },
     
     multiply(a,b){
         console.log('entrou na multiplicacao')
+        let result=a*b;
+        exibe(result);
 
-        return a*b;
+        return;
     
     },
     
     divide(a,b){
         console.log('entrou na divisao')
+        let result=a/b;
+        exibe(result);
 
-        return a/b;
+        return;
     
     },
+
     clear(){
         fila=[];
         $('#value').text('0');
@@ -50,8 +61,7 @@ const operacoes= {
         console.log(`entrou no equals com os valores a ${a}, b ${b}, c ${funcao}`);
 
         this.realizar=operacoes[funcao];
-        this.resultado=this.realizar(a,b);
-        exibe(resultado);
+        this.realizar(a,b);
 
         for(let i =0;i<3;i++){
             console.log('retirando os valores já utilizados');
@@ -67,8 +77,14 @@ const operacoes= {
 
 //função utilizad para exibir os valores na tabela
 function exibe(numExibicao){
+    let doc=document.querySelector('#value');
+    doc.innerText=numExibicao;
+    doc.style.display='none';
+    setTimeout(()=>{doc.style.display='block';
+},50)
+    
+    
 
-    $('#value').text(numExibicao);
 
 }
 
@@ -142,10 +158,9 @@ function controller(){
 
 
 function addLista(value){
-    //inserir regra de negocio aqui para tratar o cenario em que o usuario aperta apenas botões de operações.nesse caso devo considerar só a ultima.
-    //um vetor
 
-    //verifica se id está presente
+    let arr=fila[fila.length-1];
+   
     if(value.id){
         console.log('entrou aqui');
         fila.push(value.id);
@@ -154,21 +169,26 @@ function addLista(value){
     }
 
 
-    else if(parseInt(fila[fila.length-1])){
+    else if(parseInt(arr)){
+        if(arr.length===8) return;
         fila[fila.length-1]+=value; 
         exibe(fila[fila.length-1]);
         console.log(fila);
         return;
     }
+
+
     
     fila.push(value);
     exibe(value);
     console.log(fila);
+    
 }
 
 
-//função identifica qual foi numero ou operação escolhida e o coloca em um objeto
-function lastOperation(){
+//função que identifica se o núemro inserido irá extrapolar o tamaho máximo de 8 caracteres
+
+function maxSize(){
 
 
 
