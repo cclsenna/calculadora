@@ -62,7 +62,14 @@ body{
     border:2px solid black;
     cursor: pointer;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    padding-right:15px;
+    color:black;
+  
+}
+
+#value{
+    text-align:right;
 }
 

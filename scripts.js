@@ -10,37 +10,34 @@ $('.container__item--num').on('click',controller);
 //declaração das funções
 const operacoes= {
     sum(a,b){
-
-        console.log('entrou na soma');
         let result=a+b;
         exibe(result);
+        fila.unshift(result);
+
         return;
     },
     
     subtract(a,b){   
-        console.log('entrou na subtracao')
         let result=a-b;
+        console.log(result);
         exibe(result);
-
-
+        fila.unshift(result);
         return;
     
     },
     
     multiply(a,b){
-        console.log('entrou na multiplicacao')
         let result=a*b;
         exibe(result);
-
+        fila.unshift(result);
         return;
     
     },
     
     divide(a,b){
-        console.log('entrou na divisao')
         let result=a/b;
         exibe(result);
-
+        fila.unshift(result);
         return;
     
     },
@@ -58,19 +55,15 @@ const operacoes= {
 
     },
     equals(a,b,funcao){
-        console.log(`entrou no equals com os valores a ${a}, b ${b}, c ${funcao}`);
-
         this.realizar=operacoes[funcao];
-        this.realizar(a,b);
-
+        //retira os valores da conta a ser utilizada
         for(let i =0;i<3;i++){
-            console.log('retirando os valores já utilizados');
             fila.shift();
         }
+        this.realizar(a,b);
+       
         
-
         return;
-        //define qual a operçaão que será realizada
     }
     
 }
@@ -88,26 +81,19 @@ function exibe(numExibicao){
 
 }
 
-
 //essa função irá manipular o array da fila
 function controller(){
-    const id=this.id;
-    let num1='';
-    let num2='';
-    let operador='';
+    const id=this.id;    
 
 
     //verifica se já podemos realizar o calculo
-    if(fila[0]&&fila[1]&&fila[2]&&id!='equals'){
+    if(fila[0]&&fila[1]&&fila[2]&&id!='equals'&&id){
         console.log('ja temos os valores necessarios');
-        console.log(`o id é ${id}`);
         const realizaOperacao=operacoes[id];
         const  result=realizaOperacao(parseInt(fila[0]),parseInt(fila[2]));
-        console.log(result);
-        
         return;
-
     }
+
     else if(fila[0]&&fila[1]&&fila[2]&&id==='equals'){
         const realizaOperacao=operacoes[id];
         const  result=realizaOperacao(parseInt(fila[0]),parseInt(fila[2]),fila[1]);
@@ -153,6 +139,8 @@ function controller(){
     }
     else return;
 }
+
+console.log(fila);
  
 }
 
@@ -175,27 +163,21 @@ function addLista(value){
         exibe(fila[fila.length-1]);
         console.log(fila);
         return;
-    }
-
-
-    
+    }    
     fila.push(value);
     exibe(value);
     console.log(fila);
     
 }
 
+//esta função será responsável por identificar qual o tipo de botão que foi pressionado
+function buttonPressed(){
 
-//função que identifica se o núemro inserido irá extrapolar o tamaho máximo de 8 caracteres
-
-function maxSize(){
-
+    return;
 
 
 }
 
-
-//criar uma classe  para os obvjetos na quqla ele terão o valor od  número e 
 
 
 
