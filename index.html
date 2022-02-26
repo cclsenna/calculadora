@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link href="./assets/img/favicon.ico" rel="icon" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped&display=swap" rel="stylesheet">
+    <script src="./jquery-3.6.0.js" defer></script>
+    <script src="./scripts2.js" defer></script>   
 </head>
 <body>
   
@@ -23,30 +25,29 @@
 
         </div>
         <div></div>
-        <div class="container__item container__item--num" id="clear">C</div>
-        <div class="container__item container__item--num" id='allClear'>AC</div>
-        <div class="container__item container__item--num" id='sum'>+</div>
-        <div class="container__item container__item--num">7</div>
-        <div class="container__item container__item--num">8</div>
-        <div class="container__item container__item--num">9</div>
-        <div class="container__item container__item--num" id="subtract">-</div>
-        <div class="container__item container__item--num">4</div>
-        <div class="container__item container__item--num">5</div>
-        <div class="container__item container__item--num">6</div>
-        <div class="container__item container__item--num" id="multiply">*</div>
-        <div class="container__item container__item--num">1</div>
-        <div class="container__item container__item--num">2</div>
-        <div class="container__item container__item--num">3</div>
-        <div class="container__item container__item--num" id="divide">/</div>
-        <div class="container__item container__item--num" id="negate">+/-</div>
-        <div class="container__item container__item--num">0</div>
-        <div class="container__item container__item--num">.</div>
-        <div class="container__item container__item--num" id="equals">=</div>
+        <div class="container__item container__item--num" data-tipo="special" data-value="clear" id="clear">C</div>
+        <div class="container__item container__item--num" data-tipo="special" data-value="allClear" id='allClear'>AC</div>
+        <div class="container__item container__item--num" data-tipo="op" data-value="sum" id='sum'>+</div>
+        <div class="container__item container__item--num" data-tipo="num" data-value="">7</div>
+        <div class="container__item container__item--num" data-tipo="num">8</div>
+        <div class="container__item container__item--num" data-tipo="num">9</div>
+        <div class="container__item container__item--num" data-tipo="op" data-value="subtract" id="subtract">-</div>
+        <div class="container__item container__item--num" data-tipo="num">4</div>
+        <div class="container__item container__item--num" data-tipo="num">5</div>
+        <div class="container__item container__item--num" data-tipo="num">6</div>
+        <div class="container__item container__item--num" data-tipo="op" data-value="multiply" id="multiply">*</div>
+        <div class="container__item container__item--num" data-tipo="num" >1</div>
+        <div class="container__item container__item--num" data-tipo="num">2</div>
+        <div class="container__item container__item--num" data-tipo="num">3</div>
+        <div class="container__item container__item--num" data-tipo="op" data-value="divide" id="divide">/</div>
+        <div class="container__item container__item--num" data-tipo="special" data-value="negate" id="negate">+/-</div>
+        <div class="container__item container__item--num" data-tipo="num" >0</div>
+        <div class="container__item container__item--num" data-tipo="num">.</div>
+        <div class="container__item container__item--num" data-tipo="op" data-value="equals" id="equals">=</div>
         
 
 
     </main>
-<script src="./jquery-3.6.0.js"></script>
-<script src="./scripts.js"></script>   
+
 </body>
 </html>

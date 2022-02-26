@@ -6,6 +6,15 @@ const numPermitido=['0','1','2','3','4','5','6','7','8','9'];
 //esta parte é responsável APENAS por ouvir os clicks e direcionar para a controller
 $('.container__item--num').on('click',controller);
 
+const operadorObj={
+    num1: 0,
+    num2: 0,
+    op : ''
+
+
+
+}
+
 
 //declaração das funções
 const operacoes= {
@@ -13,7 +22,6 @@ const operacoes= {
         let result=a+b;
         exibe(result);
         fila.unshift(result);
-
         return;
     },
     
@@ -60,8 +68,7 @@ const operacoes= {
         for(let i =0;i<3;i++){
             fila.shift();
         }
-        this.realizar(a,b);
-       
+        this.realizar(a,b);  
         
         return;
     }
@@ -155,7 +162,6 @@ function addLista(value){
         console.log(fila);
         return;
     }
-
 
     else if(parseInt(arr)){
         if(arr.length===8) return;
