@@ -62,6 +62,18 @@ const operadorObj={
         return;
     },
 
+    checkLenght(type){
+        let valor=this['_'+type];
+        if(valor.indexOf('.')===-1) return valor.length;
+        else{
+            return valor.length-1;
+        }
+
+
+        
+
+    },
+
     
 
  
@@ -83,11 +95,8 @@ const operadorObj={
             this._statusOperacao=true;
         }
     }
-
     
-
 }
-
 
 //declaração das funções
 const operacoes= {
@@ -116,7 +125,6 @@ const operacoes= {
         let result=a*b;
         exibe(result);
         operadorObj.guardaResultado(result);
-
         return;
     
     },
@@ -127,7 +135,6 @@ const operacoes= {
         let result=a/b;
         exibe(result);
         operadorObj.guardaResultado(result);
-
         return;
     
     },
@@ -140,10 +147,59 @@ const operacoes= {
     allClear(){
         operadorObj.limpa();
         $('#value').text('0');
+    }
+    ,
+    negate(){
+        const up=operadorObj.lastUpdate;
+            if(up==='num1'){
+                let num1=operadorObj.getNum('num1');
+                if(!(num1[0]==='-')){
+                    num1='-'+num1;
+                    operadorObj.setNum(num1,'num1')
+                    exibe(num1);
+                    return;
+                }
+                
+                let novoNum=num1.split('');
+                novoNum.shift();
+                num1=novoNum.join('');
+                operadorObj.setNum(num1,'num1');
+                exibe(num1);
+                return;
+                
+
+            }
+            if(up==='num2'){
+                let num2=operadorObj.getNum('num2');
+                if(!(num2[0]==='-')){
+                    num2='-'+num2
+                    operadorObj.setNum(num2,'num2');
+                    exibe(num2);
+                    return;
+                }
+
+                let novoNum=num2.split('');
+                novoNum.shift();
+                num1=novoNum.join('');
+                operadorObj.setNum(num2,'num2');
+                exibe(num2);
+                return;             
+
+            }
+
+            
+
+               
 
 
+        
+       
 
     },
+
+
+
+    
     equals(a,b){
         const funcao=operadorObj.operador;
         this.realizar=operacoes[funcao];
@@ -226,7 +282,7 @@ function addLista(value){
 
     if(operadorObj.lastUpdate==='num1'||operadorObj.lastUpdate===''){
         const num=operadorObj.getNum('num1');
-        if(num.length===8) return;
+        if(operadorObj.checkLenght('num1')===8) return;
         let novo =num+value;
         operadorObj.setNum(novo,'num1');
         exibe(novo);
@@ -235,14 +291,14 @@ function addLista(value){
 
     else if(operadorObj.lastUpdate.num2==='num2'||operadorObj.lastUpdate==='operador'){
         const num=operadorObj.getNum('num2');
-        if(num.length===8) return;
+        if(operadorObj.checkLenght('num2')===8) return;
         let novo =num+value;
         operadorObj.setNum(novo,'num2');
         exibe(novo);
         return;
     }
 
-    
+
 }
 
 
